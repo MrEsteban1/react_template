@@ -1,0 +1,10 @@
+body {
+  padding: 20px;
+  background-color: rgb(84, 94, 103);
+  color: aliceblue;
+}
+
+button {
+  margin: 20px;
+  color: white;
+}
