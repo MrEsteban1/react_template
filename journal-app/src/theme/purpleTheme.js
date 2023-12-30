@@ -5,6 +5,6 @@ export const purpleTheme = createTheme({
   palette: {
     primary: { main: "#d1553a" },
     secondary: { main: "#543884" },
-    error: { main: red.A400 },
+    error: { main: "#900C3F" },
   },
 });

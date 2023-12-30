@@ -1,12 +1,16 @@
-import { Box } from "@mui/material";
+import { Box, Toolbar } from "@mui/material";
 import { Navbar } from "../components";
+import { SideBar } from "../components/SideBar";
 
+const sizeSideBar = 310;
 // eslint-disable-next-line react/prop-types
 export const JournalLayout = ({ children }) => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Navbar drawerWidth={240} />
+      <Navbar drawerWidth={sizeSideBar} />
+      <SideBar drawerWidth={sizeSideBar} />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
         {children}
       </Box>
     </Box>
