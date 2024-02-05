@@ -1,8 +1,15 @@
 import { AppBar, Toolbar, IconButton, Grid, Typography } from "@mui/material";
 import { LogoutOutlined, MenuOutlined } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { startLogout } from "../../store/auth/thunks";
 
 // eslint-disable-next-line react/prop-types
 export const Navbar = ({ drawerWidth }) => {
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(startLogout());
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -28,7 +35,7 @@ export const Navbar = ({ drawerWidth }) => {
           <Typography noWrap component={"div"}>
             JournalLayout
           </Typography>
-          <IconButton>
+          <IconButton onClick={onLogout}>
             <LogoutOutlined />
           </IconButton>
         </Grid>

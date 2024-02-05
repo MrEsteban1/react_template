@@ -5,17 +5,15 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
   const [formValidation, setFormValitation] = useState({});
 
   useEffect(() => {
-    console.log(formValidation);
+    console.log(formState);
     createValidators();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
 
   const isFormValid = useMemo(() => {
-    console.log(formValidation);
     const incorrectsValues = Object.keys(formValidation).find(
       (value) => formValidation[value] !== null
     );
-    console.log(incorrectsValues);
 
     return incorrectsValues === undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -23,7 +21,6 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
 
   const onInputChange = (event) => {
     const { target } = event;
-    // console.log(target.name, target.value);
     setFormState({ ...formState, [target.name]: target.value });
   };
 
@@ -47,6 +44,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
   };
 
   return {
+    formState,
     ...formState,
     onInputChange,
     resetValues,

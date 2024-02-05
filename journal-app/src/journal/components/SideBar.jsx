@@ -13,9 +13,12 @@ import {
   Grid,
   ListItemText,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
 export const SideBar = ({ drawerWidth }) => {
+  const { displayName } = useSelector((state) => state.auth);
+
   return (
     <Box
       component="nav"
@@ -30,7 +33,7 @@ export const SideBar = ({ drawerWidth }) => {
         }}
       >
         <Toolbar>
-          <Typography variant="h6">Esteban Gonzalez</Typography>
+          <Typography variant="h6"> {displayName} </Typography>
         </Toolbar>
         <Divider />
         <List>

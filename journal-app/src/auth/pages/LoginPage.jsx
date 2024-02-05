@@ -1,6 +1,7 @@
 import {
-  checkingAuthentication,
+  // checkingAuthentication,
   startGoogleSignIn,
+  startLoginWithEmailPassword,
 } from "../../store/auth/thunks";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,13 +12,14 @@ import {
   TextField,
   Button,
   Link as StyleLink,
+  Alert,
 } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../hooks";
 import { useMemo } from "react";
 
 export const LoginPage = () => {
-  const { status } = useSelector((state) => state.auth);
+  const { status, errorMessage } = useSelector((state) => state.auth);
   const { email, password, onInputChange } = useForm({
     email: "estebangonzalez@gmail.com",
     password: "1234567",
@@ -31,18 +33,19 @@ export const LoginPage = () => {
     event.preventDefault();
     console.log({ email, password });
 
-    dispatch(checkingAuthentication());
+    dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   const onGoogleSignIn = () => {
-    console.log("onGoogleSignIn");
-    console.log("STATUS:", status, isAuthenticating);
     dispatch(startGoogleSignIn());
   };
 
   return (
     <AuthLayout title="Login">
-      <form action="">
+      <form
+        action=""
+        className="animate__animated animate__fadeIn animate__faster"
+      >
         <Grid container>
           <Grid item xs={12}>
             <TextField
@@ -59,6 +62,8 @@ export const LoginPage = () => {
             <TextField
               label="password"
               type="password"
+              name="password"
+              onChange={(e) => onInputChange(e)}
               placeholder="password"
               sx={{ marginTop: "10px" }}
               fullWidth
@@ -66,6 +71,9 @@ export const LoginPage = () => {
           </Grid>
         </Grid>
         <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+          <Grid item xs={12} sm={12} display={errorMessage ? "" : "none"}>
+            <Alert severity="error">{errorMessage}</Alert>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <Button
               variant="contained"

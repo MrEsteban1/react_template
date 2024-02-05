@@ -17,7 +17,7 @@ export const AuthLayout = ({ children, title = "" }) => {
         xs={6}
         sx={{ backgroundColor: "white", padding: 3, borderRadius: 2 }}
       >
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h4">{title}</Typography>
 
         {children}
       </Grid>
